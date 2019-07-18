@@ -36,14 +36,16 @@ public class ThreadSever extends Thread {
 		while (run) {
 			nickName = getMSG();
 			System.err.println("Nick Name: " + nickName);
+			Date timeNow = new Date();
+			DateFormat df = new SimpleDateFormat("hh:mm:ss a");
+			Server.online.append("[" + df.format(timeNow) + "]: " + nickName + "\n");
+			// Server.creatButton(nickName);
 			if (nickName.compareTo("0") == 0) {
 				logout();
 			} else {
 				if (checkNick(nickName)) {
 					sendMSG("0");
 				} else {
-					Date timeNow = new Date();
-					DateFormat df = new SimpleDateFormat("hh:mm:ss");
 					server.user.append("[" + df.format(timeNow) + "] -> " + nickName + " đã kết nối với room\n");
 					server.sendAll(nickName, nickName + " đã vào room với anh em\n");
 					server.listUser.put(nickName, this);
