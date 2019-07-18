@@ -1,0 +1,20 @@
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\bin\Debug\Client.exe.config
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\bin\Debug\Client.exe
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\bin\Debug\Client.pdb
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\obj\Debug\Client.exe
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\obj\Debug\Client.pdb
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\obj\Debug\Client.Form_login.resources
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\obj\Debug\Client.Form_main.resources
+C:\Users\Administrator\Desktop\Folder Test TND\PjClient\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\bin\Debug\Client.exe.config
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.exe
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.pdb
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\bin\Debug\Client.exe
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\bin\Debug\Client.pdb
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.Form_login.resources
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.Form_main.resources
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.csproj.GenerateResource.Cache
