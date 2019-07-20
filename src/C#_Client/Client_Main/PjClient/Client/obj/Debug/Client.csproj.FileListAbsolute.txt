@@ -18,3 +18,6 @@ C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.Form_lo
 C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.Form_main.resources
 C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.Properties.Resources.resources
 C:\Users\Administrator\Desktop\PjClient\PjClient\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\ChatLan_Application\src\C#_Client\Client_Main\PjClient\Client\bin\Debug\Client.exe.config
+C:\Users\Administrator\Desktop\ChatLan_Application\src\C#_Client\Client_Main\PjClient\Client\obj\Debug\Client.exe
+C:\Users\Administrator\Desktop\ChatLan_Application\src\C#_Client\Client_Main\PjClient\Client\obj\Debug\Client.pdb
