@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_main));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textMsg = new System.Windows.Forms.TextBox();
-            this.listMsg = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -44,6 +43,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.textStatus = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -73,16 +73,7 @@
             this.textMsg.TextChanged += new System.EventHandler(this.textMsg_TextChanged);
             this.textMsg.Enter += new System.EventHandler(this.textMsg_Enter);
             this.textMsg.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-            // 
-            // listMsg
-            // 
-            this.listMsg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listMsg.FormattingEnabled = true;
-            this.listMsg.Location = new System.Drawing.Point(54, 62);
-            this.listMsg.Name = "listMsg";
-            this.listMsg.Size = new System.Drawing.Size(380, 286);
-            this.listMsg.TabIndex = 2;
-            this.listMsg.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.textMsg.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textMsg_KeyUp);
             // 
             // panel1
             // 
@@ -198,6 +189,16 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "FII Chat";
             // 
+            // textStatus
+            // 
+            this.textStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textStatus.Location = new System.Drawing.Point(59, 55);
+            this.textStatus.Multiline = true;
+            this.textStatus.Name = "textStatus";
+            this.textStatus.Size = new System.Drawing.Size(371, 292);
+            this.textStatus.TabIndex = 11;
+            this.textStatus.TextChanged += new System.EventHandler(this.textStatus_TextChanged);
+            // 
             // Form_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,6 +206,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(770, 448);
+            this.Controls.Add(this.textStatus);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -216,7 +218,6 @@
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.listMsg);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textMsg);
             this.Controls.Add(this.pictureBox4);
@@ -240,7 +241,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textMsg;
-        private System.Windows.Forms.ListBox listMsg;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -253,5 +253,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textStatus;
     }
 }

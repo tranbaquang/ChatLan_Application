@@ -19,13 +19,19 @@ namespace Client
            
         static string user;
         static string IPConnect = "127.0.0.1";
-        static int PORT_NUMBER = 9999;
+        static int PORT_NUMBER = 7777;
+        static int length;
         public Form_main()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
             user = Form_login.user;
-            listMsg.Items.Add("User : " + user);
+            length = user.Length;
+            // listMsg.Items.Add("User : " + user);
+
+            
+            AddMessage("User : " + user);
+
             Connect();
             
 
@@ -40,14 +46,17 @@ namespace Client
             try
             {
                 client.Connect(IP);
-             
+                textStatus.AppendText("\n");
                 AddMessage(client.RemoteEndPoint.ToString()+" Connected !");
-                client.Send(Serialize(user));
+                //byte[] name = Encoding.ASCII.GetBytes(user);
+
+                client.Send(stringtoByte(user));
             }
             catch
             {
                 MessageBox.Show("unable to connect please try later!", "🍓🍔🍕🍖🍚", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 AddMessage("Error Connect");
+                Application.Exit();
                 return;             
             }
             Thread listen = new Thread(Receive);
@@ -55,15 +64,23 @@ namespace Client
             listen.Start();
         }
 
+        byte[] stringtoByte(string s)
+        {
+            return Encoding.ASCII.GetBytes(s);
+        }
+        string bytetoString(byte[] x)
+        {
+            return Encoding.ASCII.GetString(x);
+        }
         void Close()
         {
             client.Close();
         }
         void Send()
         {
-            if (textMsg.Text != string.Empty)
+            if (textMsg.Text != string.Empty || textMsg.Text != "")
             {
-                client.Send(Serialize(textMsg.Text));
+                client.Send(stringtoByte(textMsg.Text));
             }
 
         }
@@ -75,7 +92,7 @@ namespace Client
                 {
                     byte[] data = new byte[1024 * 5000];
                     client.Receive(data);
-                    string message = (string)Deseriliaze(data);
+                    string message = (string)bytetoString(data);
                     AddMessage(message);
                 }
             }
@@ -91,37 +108,16 @@ namespace Client
             if (s == textMsg.Text)
             {
                 string time = DateTime.Now.ToString("hh:mm:ss");
-                listMsg.Items.Add("| " + time + " | " + "[ " + "Me" + " ] : " + s);
+                textStatus.AppendText("\n");
+                textStatus.AppendText("| " + time + " | " + "[ " + "Me" + " ] : " + s );
+
             }
-            if (s != textMsg.Text)
+            else if (s != textMsg.Text)
             {
-                listMsg.Items.Add(s);
-
+                string time = DateTime.Now.ToString("hh:mm:ss");
+                textStatus.AppendText("\n");
+                textStatus.AppendText("| "+time+" | :"+s);
             }
-
-            listMsg.SelectedIndex = listMsg.Items.Count - 1;
-            listMsg.SelectedIndex = -1;
-            textMsg.Clear();
-        }
-        byte[] Serialize(object obj)
-        {
-            //khởi tạo stream để lưu các byte phân mảnh
-            MemoryStream stream = new MemoryStream();
-            //khởi tạo đối tượng BinaryFormatter để phân mảnh dữ liệu sang kiểu byte
-            BinaryFormatter formatter = new BinaryFormatter();
-            //phân mảnh rồi ghi vào stream
-            formatter.Serialize(stream, obj);
-            //từ stream chuyển các các byte thành dãy 
-            return stream.ToArray();
-        }
-        object Deseriliaze(byte[] data)
-        {
-            //khởi tạo stream đọc kết quả của quá trình phân mảnh 
-            MemoryStream stream = new MemoryStream(data);
-            //khởi tạo đối tượng chuyển đổi
-            BinaryFormatter formatter = new BinaryFormatter();
-            //chuyển đổi dữ liệu và lưu lại kết quả 
-            return formatter.Deserialize(stream);
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -140,15 +136,18 @@ namespace Client
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-                btSend.PerformClick();
+            
+            
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            
         }
+        
 
+        
         private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
         {
 
@@ -161,8 +160,14 @@ namespace Client
 
         private void btSend_Click(object sender, EventArgs e)
         {
-            Send();
-            AddMessage(textMsg.Text);
+            if (textMsg.Text != string.Empty || textMsg.Text != "" )
+            {
+                Send();
+                AddMessage(textMsg.Text);
+                textMsg.Clear();
+            }
+            textMsg.Text = null;
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -173,12 +178,25 @@ namespace Client
 
         private void textMsg_TextChanged(object sender, EventArgs e)
         {
-
+           /// textMsg.MaxLength = 20;
         }
 
         private void textMsg_Enter(object sender, EventArgs e)
         {
            
+        }
+
+        private void textStatus_TextChanged(object sender, EventArgs e)
+        {
+            textStatus.ScrollBars = ScrollBars.Both;
+        }
+
+        private void textMsg_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btSend.PerformClick();
+            }
         }
     }
 }

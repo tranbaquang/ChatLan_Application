@@ -14,3 +14,4 @@ C:\Users\Administrator\Desktop\PjClient\PjClient\obj\Debug\PjClient.Properties.R
 C:\Users\Administrator\Desktop\PjClient\PjClient\obj\Debug\PjClient.csproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\PjClient\PjClient\obj\Debug\PjClient.exe
 C:\Users\Administrator\Desktop\PjClient\PjClient\obj\Debug\PjClient.pdb
+C:\Users\Administrator\Desktop\PjClient\PjClient\obj\Debug\PjClient.csprojResolveAssemblyReference.cache
