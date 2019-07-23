@@ -18,6 +18,7 @@ namespace Client
         public Form_login()
         {
             InitializeComponent();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -52,7 +53,7 @@ namespace Client
                 Form_main f2 = new Form_main();
                 this.Hide();
                 f2.ShowDialog();
-                //  this.Show();
+                this.Close();
             }
 
 

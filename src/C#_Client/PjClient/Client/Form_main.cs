@@ -18,12 +18,24 @@ namespace Client
     {
            
         static string user;
-        static string IPConnect = "127.0.0.1";
-        static int PORT_NUMBER = 7777;
+        static string IPConnect = "192.168.43.90";
+        static int PORT_NUMBER = 9999;
         static int length;
         public Form_main()
         {
             InitializeComponent();
+            Thread Time = new Thread(() =>
+            {
+                while (true)
+                {
+                    string time = DateTime.Now.ToLongTimeString();
+                    string date = DateTime.Now.ToLongDateString();
+                    textTime.Text = time;
+                    textDate.Text = date;
+                }
+            });
+            Time.IsBackground = true;
+            Time.Start();
             CheckForIllegalCrossThreadCalls = false;
             user = Form_login.user;
             length = user.Length;
@@ -31,7 +43,7 @@ namespace Client
 
             
             AddMessage("User : " + user);
-
+            listOnline.Items.Add("🍚 : "+user);
             Connect();
             
 
@@ -42,12 +54,14 @@ namespace Client
         void Connect()
         {
             IP = new IPEndPoint(IPAddress.Parse(IPConnect), PORT_NUMBER);
-            client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);      
+            client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+            
             try
             {
                 client.Connect(IP);
                 textStatus.AppendText("\n");
                 AddMessage(client.RemoteEndPoint.ToString()+" Connected !");
+                textConnect.Text = "👉 "+ user + " 👈";
                 //byte[] name = Encoding.ASCII.GetBytes(user);
 
                 client.Send(stringtoByte(user));
@@ -56,6 +70,8 @@ namespace Client
             {
                 MessageBox.Show("unable to connect please try later!", "🍓🍔🍕🍖🍚", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 AddMessage("Error Connect");
+                textConnect.Text = "Error Connect";
+
                 Application.Exit();
                 return;             
             }
@@ -66,11 +82,11 @@ namespace Client
 
         byte[] stringtoByte(string s)
         {
-            return Encoding.ASCII.GetBytes(s);
+            return Encoding.UTF8.GetBytes(s);
         }
         string bytetoString(byte[] x)
         {
-            return Encoding.ASCII.GetString(x);
+            return Encoding.UTF8.GetString(x);
         }
         void Close()
         {
@@ -81,6 +97,8 @@ namespace Client
             if (textMsg.Text != string.Empty || textMsg.Text != "")
             {
                 client.Send(stringtoByte(textMsg.Text));
+                AddMessage(textMsg.Text);
+                textMsg.Clear();
             }
 
         }
@@ -90,15 +108,28 @@ namespace Client
             {
                 while (true)
                 {
+                    string data2 = null;
                     byte[] data = new byte[1024 * 5000];
                     client.Receive(data);
                     string message = (string)bytetoString(data);
-                    AddMessage(message);
+                    
+                    if (message[0] == '#')
+                    {
+                                     
+                        listOnline.Items.Add(message);
+                       // AddMessage(data2);
+                    }
+                    else if (message[0] != '#')
+                    {
+                        AddMessage(message);
+                    }
+                    
+                       
                 }
             }
             catch
             {
-                Close();
+                //Close();
             }
         }
         void AddMessage(string s)
@@ -112,17 +143,19 @@ namespace Client
                 textStatus.AppendText("| " + time + " | " + "[ " + "Me" + " ] : " + s );
 
             }
-            else if (s != textMsg.Text)
+            if (s != textMsg.Text)
             {
                 string time = DateTime.Now.ToString("hh:mm:ss");
                 textStatus.AppendText("\n");
                 textStatus.AppendText("| "+time+" | :"+s);
             }
+            
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -137,8 +170,6 @@ namespace Client
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             
-            
-
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -150,12 +181,13 @@ namespace Client
         
         private void Form_main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
 
         }
 
         private void Form_main_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            
         }
 
         private void btSend_Click(object sender, EventArgs e)
@@ -163,17 +195,22 @@ namespace Client
             if (textMsg.Text != string.Empty || textMsg.Text != "" )
             {
                 Send();
-                AddMessage(textMsg.Text);
-                textMsg.Clear();
+               // AddMessage(textMsg.Text);
+                
             }
-            textMsg.Text = null;
+            
 
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-             Application.Exit();
-           
+            if (MessageBox.Show("Do you really want to exit ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                client.Send(stringtoByte("exit"));
+                Application.Exit();
+            }
+                
+
         }
 
         private void textMsg_TextChanged(object sender, EventArgs e)
@@ -193,10 +230,32 @@ namespace Client
 
         private void textMsg_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            
+        }
+        
+        private void btClear_Click(object sender, EventArgs e)
+        {
+            textStatus.Clear();   
+        }
+
+        private void Form_main_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void textMsg_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
                 btSend.PerformClick();
             }
+                
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

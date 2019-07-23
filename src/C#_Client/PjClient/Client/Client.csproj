@@ -74,6 +74,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -87,6 +88,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\142854.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\216982ad814965173c58.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-erase-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\khung gi do.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lovepik_com-400656489-dialog-box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\khung hien thi thong tin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-alarm-clock-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-alarm-clock-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\font.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
